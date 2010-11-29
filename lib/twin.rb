@@ -3,7 +3,9 @@ require 'active_support/core_ext/hash/conversions'
 require 'active_support/core_ext/hash/keys'
 require 'active_support/core_ext/hash/indifferent_access'
 require 'active_support/json'
-require 'active_support/core_ext/object/to_query'
+# Active Support 2 doesn't have the following file, but it's OK
+# since we already got the method from "hash/conversions"
+require 'active_support/core_ext/object/to_query' unless {}.respond_to? :to_query
 require 'digest/md5'
 
 class Twin
