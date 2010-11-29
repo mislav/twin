@@ -41,9 +41,9 @@ class Twin
     if path != '/' and found = recognize_resource(path)
       block, matches = found
       
-      # TODO: bail out early if authentication failed
       twin_token = env[AUTHORIZATION] =~ / oauth_token="(.+?)"/ && $1
       authenticated_user = twin_token && model.find_by_twin_token(twin_token)
+      return not_authenticated if twin_token and not authenticated_user
       
       clone = self.dup
       clone.request = Rack::Request.new env
@@ -85,7 +85,7 @@ class Twin
       }
       # later sent back as: oauth_token="..."
     else
-      [400, {'Content-Type' => 'text/plain'}, ['Bad credentials']]
+      not_authenticated
     end
   end
   
@@ -124,6 +124,10 @@ class Twin
   
   def not_implemented
     [501, {'Content-Type' => 'text/plain'}, ['Not implemented']]
+  end
+  
+  def not_authenticated
+    [400, {'Content-Type' => 'text/plain'}, ['Not authenticated']]
   end
   
   def normalize_statuses(statuses)

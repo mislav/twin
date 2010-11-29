@@ -1,6 +1,6 @@
 class Twin
   resource 'statuses/home_timeline' do
-    statuses = self.model.statuses(params.with_indifferent_access)
+    statuses = self.model.statuses(params.with_indifferent_access, current_user)
     respond_with('statuses', normalize_statuses(statuses))
   end
   

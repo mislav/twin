@@ -28,7 +28,7 @@ module Adapter
     user[:email]
   end
   
-  def self.statuses(params)
+  def self.statuses(params, current_user)
     STATUSES
   end
   
