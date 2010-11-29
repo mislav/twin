@@ -73,6 +73,10 @@ class Twin
     respond_with('saved_searches', [])
   end
   
+  resource 'account/(settings|apple_push_destinations(/(destroy|device))?)' do
+    not_implemented
+  end
+  
   DEFAULT_STATUS_PARAMS = {
     :id => nil,
     :text => "",
@@ -135,7 +139,3 @@ class Twin
   #   :sender
   #   :recipient
 end
-
-# POST /1/account/apple_push_destinations.xml
-# POST /1/account/apple_push_destinations/destroy.xml
-# GET /1/account/settings.xml

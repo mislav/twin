@@ -120,6 +120,10 @@ class Twin
     [404, {'Content-Type' => 'text/plain'}, ['Not found']]
   end
   
+  def not_implemented
+    [501, {'Content-Type' => 'text/plain'}, ['Not implemented']]
+  end
+  
   def normalize_statuses(statuses)
     statuses.map do |status|
       hash = convert_twin_hash(status)
