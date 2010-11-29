@@ -1,6 +1,6 @@
 Gem::Specification.new do |gem|
   gem.name    = 'twin'
-  gem.version = '0.1.0'
+  gem.version = '0.1.1'
   gem.date    = Date.today.to_s
 
   gem.add_dependency 'activesupport', '>= 2.3'
