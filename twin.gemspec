@@ -1,7 +1,9 @@
+# encoding: utf-8
+
 Gem::Specification.new do |gem|
   gem.name    = 'twin'
   gem.version = '0.1.1'
-  gem.date    = Date.today.to_s
+  gem.date    = Time.now.strftime('%Y-%m-%d')
 
   gem.add_dependency 'activesupport', '>= 2.3'
 
