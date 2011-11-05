@@ -150,9 +150,10 @@ class Twin
   end
   
   def convert_twin_hash(object)
-    if Hash === object then object
-    elsif object.respond_to? :to_twin_hash
+    if object.respond_to? :to_twin_hash
       object.to_twin_hash
+    elsif Hash === object
+      object
     elsif object.respond_to? :attributes
       object.attributes
     else
