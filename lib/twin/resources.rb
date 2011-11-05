@@ -73,7 +73,19 @@ class Twin
     respond_with('saved_searches', [])
   end
   
-  resource 'account/(settings|apple_push_destinations(/(destroy|device))?)' do
+  resource 'account/(settings|(apple_)?push_destinations(/(destroy|device))?)' do
+    not_implemented
+  end
+  
+  resource 'trends/(\d+)' do
+    not_implemented
+  end
+  
+  resource 'statuses/friends' do
+    not_implemented
+  end
+  
+  resource 'help/configuration' do
     not_implemented
   end
   
