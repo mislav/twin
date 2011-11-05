@@ -172,7 +172,7 @@ class Twin
   def content_type_from_format(format)
     case format
     when 'xml' then 'application/xml'
-    when 'json' then 'application/x-json'
+    when 'json' then 'application/json'
     end
   end
   
@@ -182,7 +182,7 @@ class Twin
     else
       case self.content_type
       when 'application/xml' then body.to_xml
-      when 'application/x-json' then body.to_json
+      when 'application/json' then body.to_json
       when 'application/x-www-form-urlencoded' then body.to_query
       else
         raise "unrecognized content type: #{self.content_type.inspect} (format: #{self.format})"
