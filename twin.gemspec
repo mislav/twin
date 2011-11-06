@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |gem|
   gem.name    = 'twin'
-  gem.version = '0.1.2'
+  gem.version = '0.1.3'
 
   gem.add_dependency 'activesupport', '>= 2.3'
 
