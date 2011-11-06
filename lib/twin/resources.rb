@@ -50,7 +50,12 @@ class Twin
   end
 
   resource 'statuses/(?:replies|mentions)' do
-    respond_with('statuses', [])
+    statuses = if self.model.respond_to?(:mentions)
+      self.model.mentions(params.with_indifferent_access, current_user)
+    else
+      []
+    end
+    respond_with('statuses', normalize_statuses(statuses))
   end
   
   resource '(\w+)/lists(/subscriptions)?' do
@@ -87,6 +92,41 @@ class Twin
   
   resource 'help/configuration' do
     not_implemented
+  end
+  
+  resource 'promoted_tweets/search' do
+    # params['q']
+    respond_with(nil, {"promoted_tweets" => []})
+  end
+  
+  resource 'favorites/toptweets' do
+    not_implemented
+  end
+  
+  resource 'favorites(?:/(\w+))?' do
+    statuses = if self.model.respond_to?(:favorites)
+      self.model.favorites(params.with_indifferent_access, current_user, captures[0])
+    else
+      []
+    end
+    respond_with('statuses', normalize_statuses(statuses))
+  end
+  
+  resource 'favorites/(create|destroy)/(\w+)' do
+    action = "#{captures[0]}_favorite"
+    self.model.send(action, captures[1], current_user)
+    ''
+  end
+  
+  resource 'statuses/retweet/(\w+)' do
+    self.model.retweet(captures[0], current_user)
+    ''
+  end
+  
+  resource 'statuses/update' do
+    status = self.model.status_update(params.with_indifferent_access, current_user)
+    status = normalize_statuses(Array === status ? status : [status]).first
+    respond_with('status', status)
   end
   
   DEFAULT_STATUS_PARAMS = {

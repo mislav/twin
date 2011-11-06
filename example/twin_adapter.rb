@@ -6,6 +6,44 @@ module TwinAdapter
     
     # fetch array of records representing statuses for current user.
     # respect the given params for increased performance
+    []
+  end
+
+  def self.mentions(params, current_user)
+    # same as `statuses`
+    []
+  end
+
+  def self.favorites(params, current_user, user_id = nil)
+    # target user might be explicitly given by ID
+    user = user_id ? find_by_id(user_id) : current_user
+    
+    limit = params[:count] || 20
+    page = params[:page].to_i  # starts at 0
+    params[:since_id]          # fetch only records with IDs greater than this
+    
+    # fetch array of favorite statuses
+    []
+  end
+  
+  def self.create_favorite(status_id, current_user)
+    # no return value
+  end
+  
+  def self.destroy_favorite(status_id, current_user)
+    # no return value
+  end
+  
+  def self.retweet(status_id, current_user)
+    # no return value
+  end
+  
+  def self.status_update(params, current_user)
+    params[:in_reply_to_status_id]
+    params[:status]
+    
+    # returns status as hash
+    { id: ... }
   end
   
   def self.authenticate(username, password)
