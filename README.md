@@ -74,4 +74,4 @@ Twin was written by Mislav Marohnić for [Teambox](http://teambox.com) and later
 [resources]: https://github.com/mislav/twin/blob/master/lib/twin/resources.rb
 [wp]: http://en.support.wordpress.com/twitter-api/ "WordPress.com Twitter API"
 [tumblr]: http://staff.tumblr.com/post/287703110/api
-[shane]: http://iamshane.com/notes/2010/11/9/1/twitter-clone-gem "We need a Twitter API clone Ruby Gem"
+[shane]: http://iamshane.com/articles/2010/11/9/1/twitter-clone-gem "We need a Twitter API clone Ruby Gem"
